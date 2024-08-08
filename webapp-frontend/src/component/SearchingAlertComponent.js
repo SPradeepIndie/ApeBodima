@@ -1,7 +1,8 @@
-import {Container,Grid,Typography,Button} from '@mui/material';
-import SearchingImg from './images/Searching.svg';
 import SearchOutlinedIcon from '@mui/icons-material/SearchOutlined';
+import { Button, Container, Grid, Typography } from '@mui/material';
+import SearchingImg from './images/Searching.svg';
 
+//TODO work on responsivness of the layout
 const SearchingAlertComponent=()=>{
     return(
             <Container maxWidth="xl" sx={{bgcolor: '#F4F4F4', margin:0, padding:'3vh 4vw 0 4vw'}} disableGutters>
@@ -15,13 +16,13 @@ const SearchingAlertComponent=()=>{
                         <Typography sx={{fontSize:'1.1em'}}>
                             Discover affordable apartments  for university students
                         </Typography>
-                        <Grid container spacing={4} sx={{}}>
-                                <Grid xs={6}>
+                        <Grid container>
+                                <Grid xs>
                                     <Button variant="contained" color='primary' startIcon={<SearchOutlinedIcon />} >
                                         Search
                                     </Button>
                                 </Grid>
-                                <Grid xs={6}>
+                                <Grid xs>
                                     <Button variant="outlined">
                                         Learn more
                                     </Button>
