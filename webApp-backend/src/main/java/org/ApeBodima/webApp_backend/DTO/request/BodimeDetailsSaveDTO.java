@@ -30,5 +30,5 @@ public class BodimeDetailsSaveDTO {
     private String bodimPlaceName;
     private List<BodimeContactSaveDTO> contacts;
     private List<BodimeReviewSaveDTO> reviews;
-    private WebApp_User webApp_user;
+
 }

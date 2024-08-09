@@ -55,7 +55,7 @@ public class Bodime_Detail {
     @Column(name = "location_address", length = 250)
     private String locationAddress;
 
-    @Column(name = "nearest city")
+    @Column(name = "nearestcity")
     private String nearestCity;
 
     @Column(name = "bodim_place_name", length = 200)
@@ -64,15 +64,15 @@ public class Bodime_Detail {
     @OneToMany(mappedBy = "bodime_details" )
     private List<Bodime_Contact> bodime_contacts;
 
-    @OneToMany(mappedBy = "bodime_details")
+    @OneToMany(mappedBy = "bodime_details" )
     private List<Bodime_Review> bodime_reviews;
 
-    @OneToMany(mappedBy = "bodime_details")
+    @OneToMany(mappedBy = "bodime_details" )
     private List<Bodime_Photos> bodime_photos;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "bodim_ID", referencedColumnName = "bodim_ID")
-    private WebApp_User webApp_user;
+
+    @OneToOne(mappedBy = "bodime_detail")
+    private WebApp_User webApp_user1;
 
     public Bodime_Detail(String bodimId, double price, int capacity, double distanceToUni, String type, int numChairs, int numFans, int numTables, int numNets, int kitchen, String locationAddress, String bodimPlaceName) {
         this.bodimId = bodimId;
@@ -94,4 +94,20 @@ public class Bodime_Detail {
     }
 
 
+    public Bodime_Detail(String bodimId, double price, int capacity, double distanceToUni, String type, int numChairs, int numFans, int numTables, int numNets, int kitchen, double rating, String locationAddress, String nearestCity, String bodimPlaceName) {
+        this.bodimId = bodimId;
+        this.price = price;
+        this.capacity = capacity;
+        this.distanceToUni = distanceToUni;
+        this.type = type;
+        this.numChairs = numChairs;
+        this.numFans = numFans;
+        this.numTables = numTables;
+        this.numNets = numNets;
+        this.kitchen = kitchen;
+        this.rating = rating;
+        this.locationAddress = locationAddress;
+        this.nearestCity = nearestCity;
+        this.bodimPlaceName = bodimPlaceName;
+    }
 }
