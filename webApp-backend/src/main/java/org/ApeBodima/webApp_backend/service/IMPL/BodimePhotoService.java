@@ -1,4 +1,4 @@
-package org.ApeBodima.webApp_backend.service.IMPL;
+/*package org.ApeBodima.webApp_backend.service.IMPL;
 
 import org.ApeBodima.webApp_backend.DTO.Response.BodimePhotoDTO;
 import org.ApeBodima.webApp_backend.entity.Bodime_Photos;
@@ -16,9 +16,9 @@ public class BodimePhotoService {
     private BodimePhotoRepository bodimePhotoRepository;
 
     public List<BodimePhotoDTO> getPhotosByBodimId(String bodimId) {
-        List<Bodime_Photos> photos = bodimePhotoRepository.findByBodime_detailsBodimId(bodimId);
+        List<Bodime_Photos> photos = bodimePhotoRepository.findByBodimId(bodimId);
         return photos.stream()
                 .map(photo -> new BodimePhotoDTO(photo.getPhotoId(), photo.getPhoto()))
                 .collect(Collectors.toList());
     }
-}
+}*/

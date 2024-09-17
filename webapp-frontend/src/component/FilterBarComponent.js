@@ -312,7 +312,7 @@ const BoardingPlacesFinder = () => {
         
       }}>
           {data.map((item,index) => (
-               <BoardimCard key = {index} image={bodimimage} name={item.bodimPlaceName} price={item.price} description={item.type} rating={item.rating}/>
+               <BoardimCard key = {index} image={bodimimage} name={item.bodimPlaceName} price={item.price} description={item.type} rating={item.rating} chairs={item.numChairs} fans = {item.numFans} tables = {item.numTables} nets = {item.numNets} address={item.locationAddress} distance={item.distanceToUni}/>
           ))}
          
     

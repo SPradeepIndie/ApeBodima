@@ -2,9 +2,7 @@ package org.ApeBodima.webApp_backend.entity;
 
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.util.List;
 
@@ -13,7 +11,10 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
+@Getter
+@Setter
 public class Bodime_Detail {
+
     @Id
     @Column(name = "bodim_ID", length = 4)
     private String bodimId;
@@ -69,25 +70,7 @@ public class Bodime_Detail {
     @OneToOne(mappedBy = "bodime_detail")
     private WebApp_User webApp_user1;
 
-    public String getBodimId() {
-        return bodimId;
-    }
 
-    public String getBodimPlaceName() {
-        return bodimPlaceName;
-    }
-
-    public String getLocationAddress() {
-        return locationAddress;
-    }
-
-    public double getPrice() {
-        return price;
-    }
-
-    public List<Bodime_Photos> getBodime_photos() {
-        return bodime_photos;
-    }
 
     public Bodime_Detail(String bodimId, double price, int capacity, double distanceToUni, String type, int numChairs, int numFans, int numTables, int numNets, int kitchen, String locationAddress, String bodimPlaceName) {
         this.bodimId = bodimId;

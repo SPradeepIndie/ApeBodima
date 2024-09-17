@@ -1,4 +1,4 @@
-package org.ApeBodima.webApp_backend.controller;
+/*package org.ApeBodima.webApp_backend.controller;
 
 import org.ApeBodima.webApp_backend.DTO.Response.BodimePhotoDTO;
 import org.ApeBodima.webApp_backend.service.IMPL.BodimePhotoService;
@@ -20,4 +20,4 @@ public class BodimePhotoController {
         List<BodimePhotoDTO> photos = bodimePhotoService.getPhotosByBodimId(bodimId);
         return ResponseEntity.ok(photos);
     }
-}
+}*/
