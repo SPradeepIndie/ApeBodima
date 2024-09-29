@@ -1,4 +1,4 @@
-import { React} from "react";
+import { React } from "react";
 import HeaderComponent from "../component/HeaderComponent";
 import { Outlet } from "react-router-dom";
 import FooterComponent from "../component/FooterComponent";
@@ -11,7 +11,7 @@ const MainLayout = () => {
       style={{
         minHeight: "100vh",
         width: "100%",
-        display:"flex",
+        display: "flex",
         gap: "10px",
         flexDirection: "column",
         position: "relative",
@@ -19,26 +19,32 @@ const MainLayout = () => {
         alignContent: "center",
         justifyContent: "center",
       }}
+      id="headerSection"
     >
-      <div style={{ position:"fixed", zIndex: "100",top:"0px" }}>
+      <div style={{ position: "fixed", zIndex: "100", top: "0px" }}>
         <HeaderComponent />
       </div>
       <div sx={{px: { xs: '60px' ,lg : '100px' }}}
         style={{
           backgroundColor:'#F0EFEB',
           position: "relative",
-          marginTop: "80px",
-          marginBottom:"30px",
+          marginTop: "50px",
           alignContent: "center",
           justifyContent: "center",
           width: "100%",
           gap: "10px",
         }}
       >
-        <Outlet />
-        <div className="footer" style={{
-          position:"relative"
-        }}>
+        <Outlet 
+        />
+        <div
+          className="footer"
+          style={{
+            position: "relative",
+            marginLeft:"5px",
+            marginRight:"8px"
+          }}
+        >
           <FooterComponent />
         </div>
       </div>

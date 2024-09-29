@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import FindInPageIcon from "@mui/icons-material/FindInPage";
 import StarOutlineIcon from "@mui/icons-material/StarOutline";
 import GradeIcon from "@mui/icons-material/Grade";
+
 const BoardimCard = ({ image,
   name,
   price,
@@ -14,10 +15,12 @@ const BoardimCard = ({ image,
   tables,
   nets,
   address,
-  distance}) => {
+  distance,
+  photos}) => {
 
   const navigate = useNavigate();
   const [faviorite, setFaviorite] = useState(false);
+
     const checkfaviorite=()=>{
         if (faviorite === true) {
             setFaviorite(false);
@@ -38,7 +41,8 @@ const BoardimCard = ({ image,
           tables,
           nets,
           address,
-          distance
+          distance,
+          photos
        
         }
        });	
@@ -51,7 +55,7 @@ const BoardimCard = ({ image,
         display: "flex",
         flexDirection: "column",
         justifyContent: "center",
-        padding:"16px"
+        padding: "16px",
       }}
     >
       <Grid
@@ -72,26 +76,28 @@ const BoardimCard = ({ image,
       <Grid
         item
         sx={{
-          marginLeft: "40px",
-          textAlign: "center"
+          display: "flex",
+          justifyContent: "flex-end", // Aligns Rating to the right
+          textAlign: "right",
+          marginRight: "10px", // Optional margin for spacing
         }}
       >
-        <Rating readOnly>
-          
-        </Rating>
+        <Rating readOnly />
       </Grid>
+
       <Grid
         item
         sx={{
           display: "flex",
           flexDirection: "row",
           justifyContent: "space-between",
+          marginTop:"10px"
         }}
       >
         <Typography
           sx={{
             marginLeft: "10px",
-            fontSize: "14px"
+            fontSize: "14px",
           }}
         >
           {name}
@@ -99,7 +105,7 @@ const BoardimCard = ({ image,
         <Typography
           sx={{
             marginRight: "10px",
-            fontSize: "14px"
+            fontSize: "14px",
           }}
         >
           {price}
@@ -109,7 +115,6 @@ const BoardimCard = ({ image,
         item
         sx={{
           position: "left",
-          
         }}
       >
         <Typography
@@ -126,18 +131,11 @@ const BoardimCard = ({ image,
           display: "flex",
           flexDirection: "row",
           justifyContent: "space-between",
-          
         }}
       >
-        <IconButton
-          onClick={() => 
-          checkfaviorite()
-          }
-          sx={{
-            
-          }}
-        >
-          {faviorite ? <GradeIcon /> : <StarOutlineIcon />}<Typography>add faviorite</Typography> 
+        <IconButton onClick={() => checkfaviorite()} sx={{}}>
+          {faviorite ? <GradeIcon /> : <StarOutlineIcon />}
+          <Typography>add faviorite</Typography>
         </IconButton>
 
         <div>

@@ -1,6 +1,6 @@
 import React from 'react';
 import { useLocation } from 'react-router-dom';
-
+import BodimeCarousel from './BodimeCarousel';
 function MoreDetailsComponent() {
   const style = {
     paddingLeft: window.innerWidth >= 1024 ? '100px' : '60px',
@@ -8,10 +8,12 @@ function MoreDetailsComponent() {
   };
 
   const location = useLocation();
-  const { name, price, rating, chairs, fans, tables, nets, address, distance } = location.state || {};
-
+  const { name, price, rating, chairs, fans, tables, nets, address, distance,photos } = location.state || {};
+  console.log(photos);
   return (
+    
     <div style={style}>
+      <BodimeCarousel image={photos}/>
       {/* Top Section: Title and Reviews */}
       <div style={{ backgroundColor: 'white', width: '100%', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
         <h1 style={{ margin: 0 }}>{name}</h1>
@@ -69,6 +71,7 @@ function MoreDetailsComponent() {
           <div>Available</div>
         </div>
       </div>
+    
     </div>
   )
 }

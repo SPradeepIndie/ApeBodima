@@ -1,4 +1,4 @@
-package org.ApeBodima.webApp_backend.DTO.Response;
+package org.ApeBodima.webApp_backend.DTO.response;
 
 
 import lombok.AllArgsConstructor;
@@ -9,6 +9,6 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class BodimePhotoDTO {
-    private String photoId;
-    private String photoUrl;
+    private int photoId;
+    private String photo;
 }

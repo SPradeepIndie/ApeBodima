@@ -1,7 +1,7 @@
 package org.ApeBodima.webApp_backend.service.serviceInterFaces;
 
 import org.ApeBodima.webApp_backend.DTO.request.FavouriteSaveDTO;
-import org.ApeBodima.webApp_backend.DTO.Response.FavouriteBodimResponseDTO;
+import org.ApeBodima.webApp_backend.DTO.response.FavouriteBodimResponseDTO;
 
 import java.util.List;
 

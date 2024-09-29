@@ -1,12 +1,13 @@
 package org.ApeBodima.webApp_backend.service.IMPL;
 
 import org.ApeBodima.webApp_backend.DTO.request.FavouriteSaveDTO;
-import org.ApeBodima.webApp_backend.DTO.Response.FavouriteBodimResponseDTO;
+import org.ApeBodima.webApp_backend.DTO.response.FavouriteBodimResponseDTO;
 import org.ApeBodima.webApp_backend.entity.Bodime_Detail;
 import org.ApeBodima.webApp_backend.entity.Bodime_Photos;
 import org.ApeBodima.webApp_backend.entity.FavouriteBodimList;
 import org.ApeBodima.webApp_backend.repository.BodimeDetailsRepo;
-import org.ApeBodima.webApp_backend.repository.BodimePhotosRepo;
+import org.ApeBodima.webApp_backend.repository.BodimePhotoRepository;
+
 import org.ApeBodima.webApp_backend.repository.FavouriteBodimListRepo;
 import org.ApeBodima.webApp_backend.service.serviceInterFaces.FavouriteService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,7 +27,7 @@ public class FavouriteServiceIMPL implements FavouriteService {
     private BodimeDetailsRepo bodimeDetailsRepo;
 
     @Autowired
-    private BodimePhotosRepo bodimePhotosRepo;
+    private BodimePhotoRepository bodimePhotosRepo;
 
     @Override
     public String addFavourite(FavouriteSaveDTO favouriteSaveDTO) {

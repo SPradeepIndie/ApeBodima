@@ -1,6 +1,5 @@
 package org.ApeBodima.webApp_backend.entity;
 
-
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -64,7 +63,7 @@ public class Bodime_Detail {
     @OneToMany(mappedBy = "bodime_details" )
     private List<Bodime_Review> bodime_reviews;
 
-    @OneToMany(mappedBy = "bodime_details",fetch = FetchType.EAGER )
+    @OneToMany(mappedBy = "bodime_details" )
     private List<Bodime_Photos> bodime_photos;
 
     @OneToOne(mappedBy = "bodime_detail")
