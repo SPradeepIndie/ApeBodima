@@ -9,18 +9,21 @@ import FilterBar from "./component/FilterBarComponent";
 import Explore from "./pages/Explore";
 import UserManagement from "./pages/UserManagement";
 import MoreDetails from "./component/MoreDetailsComponent";
+import BoardimCard from "./component/BoardimCard";
+
 const App = () => {
   return (
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<MainLayout />}>
-          <Route index element={<div style={{display:"flex",flexDirection:"column",alignItems:"center",gap:"5px"}}><SearchAlertComponent/><Home /></div>} />
-          <Route path="/addBodim" element={<div style={{display:"flex",flexDirection:"column",alignItems:"center",gap:"5px"}}><SearchAlertComponent/><AddBodim /></div>} />
+          <Route index element={<div style={{display:"flex",flexDirection:"column",alignItems:"center"}}><SearchAlertComponent/><Home /></div>} />
+          <Route path="/addBodim" element={<div><SearchAlertComponent/><AddBodim /></div>} />
           <Route path="/a" element={<AboutUs />} />
           <Route path="/filter" element={<FilterBar />} />
           <Route path="/explore" element={<><Explore /></>} />
           <Route path="/userAccount" element={<UserManagement/>}/>
           <Route path="/more-details" element={<MoreDetails />} />
+          <Route path="/component" element={<BoardimCard/>}/>
         </Route>
       </Routes>
     </BrowserRouter>

@@ -1,8 +1,6 @@
 name: Docker Image CI
 
 on:
-  push:
-    branches: [ "Production", "master"]
   pull_request:
     branches: [ "master","Production" ]
     types: [opened, synchronize]
@@ -29,8 +27,32 @@ jobs:
         username: ${{ secrets.DOCKERHUB_USERNAME }}
         password: ${{ secrets.DOCKERHUB_TOKEN }}
     -
-      name: Build and push
+      name: Set up JDK 21
+      uses: actions/setup-java@v4
+      with:
+        java-version: '21'
+        distribution: 'temurin'
+        
+    - 
+      name: Setup Gradle
+      uses: gradle/actions/setup-gradle@417ae3ccd767c252f5661f1ace9f835f9654f2b5 # v3.1.0
+
+    - 
+      name: Build with Gradle Wrapper
+      run: ./gradlew build
+      working-directory: ./webApp-backend
+
+    -
+      name: push backend
       uses: docker/build-push-action@v6
       with:
+          file: ./webApp-backend/Dockerfile
           push: true
-          tags: user/app:latest
+          tags: sanjayapradeep/bodimabackend:latest
+    -
+      name: Build and push frontend
+      uses: docker/build-push-action@v6
+      with:
+          file: ./webApp-frontend/Dockerfile
+          push: true
+          tags: sanjayapradeep/bodimafrontend:latests

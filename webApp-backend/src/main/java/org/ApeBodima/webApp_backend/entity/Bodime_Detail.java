@@ -1,7 +1,11 @@
 package org.ApeBodima.webApp_backend.entity;
 
 import jakarta.persistence.*;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import org.hibernate.annotations.GenericGenerator;
 
 import java.util.List;
 
@@ -14,10 +18,14 @@ import java.util.List;
 @Setter
 public class Bodime_Detail {
 
+    @Getter
     @Id
-    @Column(name = "bodim_ID", length = 4)
+    @Column(name = "bodim_ID")
+    @GeneratedValue(generator = "bodim_uuid")
+    @GenericGenerator(name="bodim_uuid",type = BodimIDGenerator.class)
     private String bodimId;
 
+    @Getter
     @Column(name = "price")
     private double price;
 
@@ -48,12 +56,14 @@ public class Bodime_Detail {
     @Column(name = "rating")
     private double rating;
 
+    @Getter
     @Column(name = "location_address", length = 250)
     private String locationAddress;
 
     @Column(name = "nearestcity")
     private String nearestCity;
 
+    @Getter
     @Column(name = "bodim_place_name", length = 200)
     private String bodimPlaceName;
 
@@ -63,14 +73,14 @@ public class Bodime_Detail {
     @OneToMany(mappedBy = "bodime_details" )
     private List<Bodime_Review> bodime_reviews;
 
-    @OneToMany(mappedBy = "bodime_details" )
+
+    @Getter
+    @OneToMany(mappedBy = "bodime_details",fetch = FetchType.EAGER )
     private List<Bodime_Photos> bodime_photos;
 
     @OneToOne(mappedBy = "bodime_detail")
     private WebApp_User webApp_user1;
-
-
-
+  
     public Bodime_Detail(String bodimId, double price, int capacity, double distanceToUni, String type, int numChairs, int numFans, int numTables, int numNets, int kitchen, String locationAddress, String bodimPlaceName) {
         this.bodimId = bodimId;
         this.price = price;

@@ -1,4 +1,4 @@
-import { Button, Grid, IconButton, Rating, Typography } from "@mui/material";
+import { Button, Grid, IconButton,Typography } from "@mui/material";
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import FindInPageIcon from "@mui/icons-material/FindInPage";
@@ -19,6 +19,7 @@ const BoardimCard = ({ image,
   photos}) => {
 
   const navigate = useNavigate();
+
   const [faviorite, setFaviorite] = useState(false);
 
     const checkfaviorite=()=>{
@@ -82,7 +83,7 @@ const BoardimCard = ({ image,
           marginRight: "10px", // Optional margin for spacing
         }}
       >
-        <Rating readOnly />
+         <Rating rate={rating}/>
       </Grid>
 
       <Grid
@@ -108,7 +109,7 @@ const BoardimCard = ({ image,
             fontSize: "14px",
           }}
         >
-          {price}
+          <span>Rs </span>{price}
         </Typography>
       </Grid>
       <Grid

@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const apiClient = axios.create({
-    baseURL: 'http://localhost:8080/api/v1',
+    baseURL: 'http://localhost:8080/api/v1/',
     headers: {
       'Content-Type': 'application/json',
     },
@@ -10,7 +10,6 @@ const apiClient = axios.create({
 apiClient.interceptors.response.use(
   response => response,
   error => {
-    console.error('API call failed:', error);
     // Handle specific error cases
     if (error.response.status === 401) {
       console.error('Unauthorized');
@@ -19,6 +18,7 @@ apiClient.interceptors.response.use(
       console.error('Not found');
       alert(" Not found")
     }
+    console.error('API call failed:', error);
     return Promise.reject(error);
   }
 );
