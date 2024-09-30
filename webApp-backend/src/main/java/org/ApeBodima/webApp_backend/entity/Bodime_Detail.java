@@ -14,7 +14,10 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
+@Getter
+@Setter
 public class Bodime_Detail {
+
     @Getter
     @Id
     @Column(name = "bodim_ID")
@@ -70,13 +73,14 @@ public class Bodime_Detail {
     @OneToMany(mappedBy = "bodime_details" )
     private List<Bodime_Review> bodime_reviews;
 
+
     @Getter
     @OneToMany(mappedBy = "bodime_details",fetch = FetchType.EAGER )
     private List<Bodime_Photos> bodime_photos;
 
     @OneToOne(mappedBy = "bodime_detail")
     private WebApp_User webApp_user1;
-
+  
     public Bodime_Detail(String bodimId, double price, int capacity, double distanceToUni, String type, int numChairs, int numFans, int numTables, int numNets, int kitchen, String locationAddress, String bodimPlaceName) {
         this.bodimId = bodimId;
         this.price = price;

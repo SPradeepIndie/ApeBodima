@@ -2,7 +2,7 @@ package org.ApeBodima.webApp_backend.controller;
 
 import jakarta.transaction.Transactional;
 import org.ApeBodima.webApp_backend.DTO.request.FavouriteSaveDTO;
-import org.ApeBodima.webApp_backend.DTO.Response.FavouriteBodimResponseDTO;
+import org.ApeBodima.webApp_backend.DTO.response.FavouriteBodimResponseDTO;
 import org.ApeBodima.webApp_backend.service.serviceInterFaces.FavouriteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
