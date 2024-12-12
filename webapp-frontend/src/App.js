@@ -8,7 +8,9 @@ import SearchAlertComponent from "./component/SearchingAlertComponent";
 import FilterBar from "./component/FilterBarComponent";
 import Explore from "./pages/Explore";
 import UserManagement from "./pages/UserManagement";
+import MoreDetails from "./component/MoreDetailsComponent";
 import BoardimCard from "./component/BoardimCard";
+
 const App = () => {
   return (
     <BrowserRouter>
@@ -20,6 +22,7 @@ const App = () => {
           <Route path="/filter" element={<FilterBar />} />
           <Route path="/explore" element={<><Explore /></>} />
           <Route path="/userAccount" element={<UserManagement/>}/>
+          <Route path="/more-details" element={<MoreDetails />} />
           <Route path="/component" element={<BoardimCard/>}/>
         </Route>
       </Routes>

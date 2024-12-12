@@ -11,15 +11,16 @@ import lombok.*;
 @Data
 public class Bodime_Photos {
     @Id
-    @Column(name = "photo_id",length = 4)
-    private String photoId;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)  // Auto-generates integer IDs
+    @Column(name = "photo_id")
+    private Integer photoId;
 
     @ManyToOne
     @JoinColumn(name="bodime_id",nullable=false)
     private Bodime_Detail bodime_details;
 
-    @Column(name = "photo")
-    private String photo;
 
+    @Column(name = "photo",columnDefinition = "LONGTEXT")
+    private String photo;
 
 }

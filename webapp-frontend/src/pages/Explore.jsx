@@ -76,10 +76,38 @@ const Explore = () => {
           gap: "20px",
           justifyItems:"center"
         }}
+      >{/*
+        <BoardimCard
+          image={
+            "https://tse3.mm.bing.net/th?id=OIP.qE3ylW-qR2cxqgVil4y3RQHaJ3&pid=Api&P=0&h=220"
+          }
+        />
+        <BoardimCard
+          image={
+            "https://tse3.mm.bing.net/th?id=OIP.qE3ylW-qR2cxqgVil4y3RQHaJ3&pid=Api&P=0&h=220"
+          }
+        />
+        <BoardimCard
+          image={
+            "https://tse3.mm.bing.net/th?id=OIP.qE3ylW-qR2cxqgVil4y3RQHaJ3&pid=Api&P=0&h=220"
+          }
+        />
+        <BoardimCard
+          image={
+            "https://tse3.mm.bing.net/th?id=OIP.qE3ylW-qR2cxqgVil4y3RQHaJ3&pid=Api&P=0&h=220"
+          }
+        />
+        <BoardimCard
+          image={
+            "https://tse3.mm.bing.net/th?id=OIP.qE3ylW-qR2cxqgVil4y3RQHaJ3&pid=Api&P=0&h=220"
+          }
+        />*/}
+
       >
         {data.map((item,index) => (
                <BoardimCard key = {index} image={bodimimage} name={item.bodimPlaceName} price={item.price} description={item.type} rating={item.rating}/> 
           ))}
+
       </Grid>
       <Stack direction="row" spacing={2}
         sx={{

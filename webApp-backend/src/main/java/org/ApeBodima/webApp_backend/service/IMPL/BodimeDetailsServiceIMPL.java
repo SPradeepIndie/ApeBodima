@@ -4,14 +4,9 @@ import jakarta.transaction.Transactional;
 import org.ApeBodima.webApp_backend.DTO.request.BodimeContactSaveDTO;
 import org.ApeBodima.webApp_backend.DTO.request.BodimeDetailsSaveDTO;
 import org.ApeBodima.webApp_backend.DTO.request.BodimeReviewSaveDTO;
-import org.ApeBodima.webApp_backend.entity.Bodime_Contact;
-import org.ApeBodima.webApp_backend.entity.Bodime_Detail;
-import org.ApeBodima.webApp_backend.entity.Bodime_Review;
-import org.ApeBodima.webApp_backend.entity.WebApp_User;
-import org.ApeBodima.webApp_backend.repository.BodimeDetailsContactRepo;
-import org.ApeBodima.webApp_backend.repository.BodimeDetailsRepo;
-import org.ApeBodima.webApp_backend.repository.BodimeReviewRepo;
-import org.ApeBodima.webApp_backend.repository.WebAppUserRepo;
+import org.ApeBodima.webApp_backend.DTO.response.BodimePhotoDTO;
+import org.ApeBodima.webApp_backend.entity.*;
+import org.ApeBodima.webApp_backend.repository.*;
 import org.ApeBodima.webApp_backend.service.serviceInterFaces.BodimeDetailsService;
 import org.ApeBodima.webApp_backend.util.mappers.BodimeMapper;
 import org.hibernate.Hibernate;
@@ -47,6 +42,9 @@ public class BodimeDetailsServiceIMPL implements BodimeDetailsService {
 
     @Autowired
     private WebAppUserRepo webAppUserRepo;
+
+    @Autowired
+    private BodimePhotoRepository BodimephotoRepo;
     @Override
     @Transactional
     public String save(BodimeDetailsSaveDTO bodimeDetailsSaveDTO,String userId) {
@@ -96,7 +94,9 @@ public class BodimeDetailsServiceIMPL implements BodimeDetailsService {
 
                     }.getType());
 
-
+            List<Bodime_Photos> bodimePhotos = modelMapper.map(
+                    bodimeDetailsSaveDTO.getPhotos(),new TypeToken<List<Bodime_Photos>>(){}.getType()
+            );
 
                 for (int i = 0; i < bodime_contacts.size(); i++) {
                     bodime_contacts.get(i).setBodime_details(bodime_detail);
@@ -104,14 +104,18 @@ public class BodimeDetailsServiceIMPL implements BodimeDetailsService {
                 for (int i = 0; i < bodime_reviews.size(); i++) {
                     bodime_reviews.get(i).setBodime_details(bodime_detail);
                 }
-
+                for(int i=0;i<bodimePhotos.size();i++){
+                    bodimePhotos.get(i).setBodime_details(bodime_detail);
+                }
                 if (bodime_contacts.size() > 0) {
                     bodimeDetailsContactRepo.saveAll(bodime_contacts);
                 }
                 if (bodime_reviews.size() > 0) {
                     bodimeReviewRepo.saveAll(bodime_reviews);
                 }
-
+                if(bodimePhotos.size()>0){
+                    BodimephotoRepo.saveAll(bodimePhotos);
+                }
 
                 return "Bodime added successfully ";
 
@@ -150,9 +154,11 @@ public class BodimeDetailsServiceIMPL implements BodimeDetailsService {
                             .collect(Collectors.toList()),
                     bodime_detail.getBodime_reviews().stream()
                             .map(review -> modelMapper.map(review, BodimeReviewSaveDTO.class))
+                            .collect(Collectors.toList()),
+
+                    bodime_detail.getBodime_photos().stream()
+                            .map(photos ->modelMapper.map(photos,BodimePhotoDTO.class))
                             .collect(Collectors.toList())
-
-
             );
             return bodimeDetailsSaveDto;
         }
@@ -176,6 +182,10 @@ public class BodimeDetailsServiceIMPL implements BodimeDetailsService {
                     dto.setReviews(bodime_detail.getBodime_reviews().stream()
                             .map(review -> modelMapper.map(review, BodimeReviewSaveDTO.class))
                             .collect(Collectors.toList()));
+                    dto.setPhotos(bodime_detail.getBodime_photos().stream()
+                            .map(photos ->modelMapper.map(photos,BodimePhotoDTO.class))
+                            .collect(Collectors.toList())
+                    );
                     return dto;
                 })
                 .collect(Collectors.toList());
@@ -232,11 +242,18 @@ public class BodimeDetailsServiceIMPL implements BodimeDetailsService {
                 bodimeDetailsSaveDTO.getReviews(), new TypeToken<List<Bodime_Review>>() {}.getType()
         );
 
+        List<Bodime_Photos> bodime_photos = modelMapper.map(
+                bodimeDetailsSaveDTO.getPhotos(), new TypeToken<List<Bodime_Photos>>() {}.getType()
+        );
+
         for (Bodime_Contact contact : bodime_contacts) {
             contact.setBodime_details(bodime_detail);
         }
         for (Bodime_Review review : bodime_reviews) {
             review.setBodime_details(bodime_detail);
+        }
+        for(Bodime_Photos photos : bodime_photos){
+            photos.setBodime_details(bodime_detail);
         }
 
         if (!bodime_contacts.isEmpty()) {
@@ -244,6 +261,9 @@ public class BodimeDetailsServiceIMPL implements BodimeDetailsService {
         }
         if (!bodime_reviews.isEmpty()) {
             bodimeReviewRepo.saveAll(bodime_reviews);
+        }
+        if(!bodime_photos.isEmpty()) {
+            BodimephotoRepo.saveAll(bodime_photos);
         }
 
         return "Bodime details updated successfully";
@@ -270,6 +290,10 @@ public class BodimeDetailsServiceIMPL implements BodimeDetailsService {
                     dto.setReviews(bodime_detail.getBodime_reviews().stream()
                             .map(review -> modelMapper.map(review, BodimeReviewSaveDTO.class))
                             .collect(Collectors.toList()));
+                    dto.setPhotos(bodime_detail.getBodime_photos().stream()
+                            .map(photos ->modelMapper.map(photos,BodimePhotoDTO.class))
+                            .collect(Collectors.toList())
+                    );
                     return dto;
                 })
                 .collect(Collectors.toList());

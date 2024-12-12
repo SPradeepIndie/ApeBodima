@@ -1,18 +1,53 @@
 import { Button, Grid, IconButton,Typography } from "@mui/material";
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import FindInPageIcon from "@mui/icons-material/FindInPage";
 import StarOutlineIcon from "@mui/icons-material/StarOutline";
 import GradeIcon from "@mui/icons-material/Grade";
-import Rating from "./Rating";
-const BoardimCard = ({ image, name, price, description, rating }) => {
+
+const BoardimCard = ({ image,
+  name,
+  price,
+  description,
+  rating,
+  chairs,
+  fans,
+  tables,
+  nets,
+  address,
+  distance,
+  photos}) => {
+
+  const navigate = useNavigate();
+
   const [faviorite, setFaviorite] = useState(false);
-  const checkfaviorite = () => {
-    if (faviorite === true) {
-      setFaviorite(false);
-    } else {
-      setFaviorite(true);
+
+    const checkfaviorite=()=>{
+        if (faviorite === true) {
+            setFaviorite(false);
+          } else {
+            setFaviorite(true);
+          }
     }
-  };
+    const handleMoreDetailsClick = () => {
+       navigate("/more-details",{
+        state:{
+          
+          name,
+          price,
+          description,
+          rating,
+          chairs,
+          fans,
+          tables,
+          nets,
+          address,
+          distance,
+          photos
+       
+        }
+       });	
+    }
   return (
     <Grid
       sx={{
@@ -106,6 +141,7 @@ const BoardimCard = ({ image, name, price, description, rating }) => {
 
         <div>
           <Button
+            onClick={handleMoreDetailsClick}
             sx={{
               background: "white",
               textDecoration: "none",
